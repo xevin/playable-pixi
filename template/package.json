@@ -4,6 +4,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "playable-scripts dev",
+    "dev-open": "playable-scripts dev --open",
     "build": "playable-scripts build"
   },
   "author": "xevin",

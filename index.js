@@ -30,8 +30,12 @@ fs.cpSync(templateDir, projectDir, { recursive: true });
 // Пример: переименовываем .gitignore (если в шаблоне он назван gitignore)
 try {
   fs.renameSync(
-    path.join(projectDir, 'gitignore'),
+    path.join(projectDir,  'gitignore'),
     path.join(projectDir, '.gitignore')
+  );
+  fs.renameSync(
+    path.join(projectDir,  'editorconfig'),
+    path.join(projectDir, '.editorconfig')
   );
 } catch (err) {
   // Игнорируем, если файла нет
