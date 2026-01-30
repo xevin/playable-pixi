@@ -1,29 +1,51 @@
-import { Application } from "pixi.js";
+import { Application, Assets } from "pixi.js";
+import Config from "./config"
+import { initDevtools } from "@pixi/devtools";
 
 
 const initApp = async () => {
   const app = new Application();
   const gameWrapper = document.getElementById("app")
 
-
   await app.init({
-    background: "#1099bb",
+    background: Config.backgroundColor,
     resizeTo: window,
-    height: 960
+    height: Config.height
   });
-
-
   gameWrapper.appendChild(app.canvas)
+
+  // для плагина в браузере
+  initDevtools({app})
+
+
+  // --- Ассеты
+  const assets = await Assets.loadBundle("main");
 
 
   function resize() {
-    let scale = app.screen.height / 960
-    app.stage.scale.set(scale)
-    app.stage.position.y = 0
+    let width = gameWrapper.offsetWidth;
+    let height = gameWrapper.offsetHeight;
+
+    let screenScaleH = height / Config.height
+    let screenScaleW = width / Config.minWidth
+    let screenScale = screenScaleH
+
+    if (height > width) {
+      screenScale = screenScaleW
+      console.log("portrait")
+    } else {
+      console.log("landscape")
+    }
+
+    app.stage.scale.set(screenScale)
+    app.renderer.resize(width, height)
+    app.stage.position.x = (width - Config.width * screenScale) / 2
+    app.stage.position.y = (height - Config.height * screenScale) / 2
   }
 
-  // Масштабирование канваса под размер экрана
+  // Масштабирование холста под размер экрана
   window.addEventListener("resize", resize);
+  window.addEventListener("deviceorientation", resize);
   resize()
 };
 
