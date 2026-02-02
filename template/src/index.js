@@ -1,7 +1,19 @@
-import { Application, Assets } from "pixi.js";
+import { Application } from "pixi.js"
 import Config from "./config"
-import { initDevtools } from "@pixi/devtools";
+import { loadTextureFromBase64, loadCustomFont } from "./utils"
+import { images, fontData } from "./assets"
+import { initDevtools } from "@pixi/devtools"
 
+
+let assetsLoad = async () => {
+  let _images = {...images}
+
+  for(let key in images) {
+    _images[key] = await loadTextureFromBase64(images[key])
+  }
+
+  return _images
+}
 
 const initApp = async () => {
   const app = new Application();
@@ -19,7 +31,9 @@ const initApp = async () => {
 
 
   // --- Ассеты
-  const assets = await Assets.loadBundle("main");
+  // const assets = await Assets.loadBundle("main");
+  const assets = await assetsLoad()
+  const font = await loadCustomFont(fontData.src)
 
 
   function resize() {

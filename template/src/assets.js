@@ -1,12 +1,11 @@
-import { Assets } from "pixi.js";
 
-Assets.addBundle("main", {
+export const images = {
   logo: "<base64>"
-})
+}
 
-Assets.load({
+export const fontData = {
   src: "<base64>",
   data: {
-    family: "MyFont"
+    family: "CustomFont"
   }
-})
+}
