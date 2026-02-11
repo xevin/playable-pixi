@@ -133,16 +133,16 @@ export function loadTextureFromBase64(base64Data) {
   });
 }
 
-export async function loadCustomFont(fontBase64Data) {
+export async function loadCustomFont(fontFamily, fontBase64Data) {
   return new Promise((resolve) => {
     try {
       // Создаем стиль для загрузки шрифта
       const fontFace = new FontFace(
-        'CustomFont',
+        fontFamily,
         `url(${fontBase64Data})`,
         {
           style: 'normal',
-          weight: '400'
+          // weight: '400'
         }
       );
 

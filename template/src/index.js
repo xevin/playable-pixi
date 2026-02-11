@@ -1,19 +1,7 @@
 import { Application } from "pixi.js"
 import Config from "./config"
-import { loadTextureFromBase64, loadCustomFont } from "./utils"
-import { images, fontData } from "./assets"
-import { initDevtools } from "@pixi/devtools"
+import { assetsLoad, loadFonts } from "./assets"
 
-
-let assetsLoad = async () => {
-  let _images = {...images}
-
-  for(let key in images) {
-    _images[key] = await loadTextureFromBase64(images[key])
-  }
-
-  return _images
-}
 
 const initApp = async () => {
   const app = new Application();
@@ -27,13 +15,13 @@ const initApp = async () => {
   gameWrapper.appendChild(app.canvas)
 
   // для плагина в браузере
-  initDevtools({app})
+  // Pixi Devtools (https://chromewebstore.google.com/detail/pixijs-devtools/aamddddknhcagpehecnhphigffljadon)
+  globalThis.__PIXI_APP__ = app
 
 
   // --- Ассеты
-  // const assets = await Assets.loadBundle("main");
+  await loadFonts()
   const assets = await assetsLoad()
-  const font = await loadCustomFont(fontData.src)
 
 
   function resize() {
@@ -44,7 +32,11 @@ const initApp = async () => {
     let screenScaleW = width / Config.minWidth
     let screenScale = screenScaleH
 
-    if (height > width) {
+    let resizeData = {
+      isPortrait: height > width
+    }
+
+    if (resizeData.isPortrait) {
       screenScale = screenScaleW
       console.log("portrait")
     } else {
