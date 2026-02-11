@@ -5,7 +5,7 @@ export const images = {
 }
 
 
-export const fontData = {
+export const fonts = {
   "CustomFont": {
     src: "<base64>",
     // config: {
