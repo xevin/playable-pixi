@@ -1,10 +1,10 @@
 import { Application } from "pixi.js"
 import Config from "./config"
-import { assetsLoad, loadFonts } from "./assets"
+import { loadAssets } from "./assets"
 
 
 const initApp = async () => {
-  const app = new Application();
+  const app = new Application()
   const gameWrapper = document.getElementById("app")
 
   await app.init({
@@ -20,8 +20,7 @@ const initApp = async () => {
 
 
   // --- Ассеты
-  await loadFonts()
-  const assets = await assetsLoad()
+  await loadAssets()
 
 
   function resize() {

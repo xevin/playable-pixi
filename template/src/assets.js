@@ -1,37 +1,28 @@
-import { loadCustomFont, loadTextureFromBase64 } from "./utils";
+import { Assets } from "pixi.js"
+import robotoFont from "assets/Roboto-VariableFont.ttf"
+import bg from "assets/bg.png"
 
-export const images = {
-  logo: "<base64>"
+let images = {
+  bg,
 }
 
 
-export const fonts = {
-  "CustomFont": {
-    src: "<base64>",
-    // config: {
-    //   weight: ""
-    // }
-  },
-}
-
-export const sounds = {
-  soundName: "<base64>",
+let aliasList = []
+for(let i in images) {
+  aliasList.push({
+    alias: i,
+    src: images[i],
+  })
 }
 
 
-export async function assetsLoad() {
-  let _images = {...images}
+export async function loadAssets() {
+  await Assets.load(aliasList)
 
-  for(let key in images) {
-    _images[key] = await loadTextureFromBase64(images[key])
-  }
-
-  return _images
-}
-
-
-export async function loadFonts() {
-  for(let key in fonts) {
-    await loadCustomFont(key, fonts[key].src)
-  }
+  await Assets.load({
+    src: robotoFont,
+    data: {
+      family: "Roboto"
+    }
+  })
 }
