@@ -1,3 +1,9 @@
+import { Graphics } from "pixi.js"
+
+export function capitalizeFirstLetter(s) {
+  return s && String(s[0]).toUpperCase() + String(s).slice(1)
+}
+
 export function rotateArray(arr, startIndex) {
   if (!Array.isArray(arr) || arr.length === 0) return [];
 
@@ -18,6 +24,39 @@ export function getCyclicElement(arr, index) {
   const normalizedIndex = cyclicIndex >= 0 ? cyclicIndex : arr.length + cyclicIndex;
 
   return arr[normalizedIndex];
+}
+
+export function createRect(x, y, w, h, fill=null) {
+  let graphics = new Graphics()
+  graphics.rect(x, y, w, h)
+
+  if (fill !== null) {
+    graphics.fill(fill)
+  }
+
+  return graphics
+}
+
+export function createRoundRect(x, y, w, h, radius, fill=0xFFFFFF) {
+  let graphics = new Graphics()
+  graphics.roundRect(x, y, w, h, radius)
+
+  if (fill !== null) {
+    graphics.fill(fill)
+  }
+
+  return graphics
+}
+
+export function createCircle(x, y, radius, fill=null) {
+  let graphics = new Graphics()
+  graphics.circle(x, y, radius)
+
+  if (fill !== null) {
+    graphics.fill(fill)
+  }
+
+  return graphics
 }
 
 // ====================================================

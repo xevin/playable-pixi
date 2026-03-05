@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "prebuild": "assetpack",
     "dev": "playable-scripts dev",
     "dev-open": "playable-scripts dev --open",
     "build": "playable-scripts build"
@@ -11,13 +12,14 @@
   "license": "ISC",
   "description": "Базовый шаблон для написания playable на pixi.js",
   "devDependencies": {
+    "@assetpack/core": "^1.4.0",
     "@smoud/playable-scripts": "^1.1.2",
     "vite": "^7.3.1",
     "vite-plugin-singlefile": "^2.3.0"
   },
   "dependencies": {
     "gsap": "^3.14.2",
-    "howler": "^2.2.4",
+    "@pixi/sound": "^6.0.1",
     "pixi.js": "^8.15.0",
     "@smoud/playable-sdk": "^1.0.24"
   }

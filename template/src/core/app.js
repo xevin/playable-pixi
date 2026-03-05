@@ -24,6 +24,10 @@ export default class App {
     // для потомков
   }
 
+  addChild(...args) {
+    this.app.stage.addChild(...args)
+  }
+
   #placeToCenterOfScreen(width, height) {
     this.app.stage.position.x = width / 2
     this.app.stage.position.y = height / 2

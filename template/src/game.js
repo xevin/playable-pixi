@@ -1,18 +1,14 @@
 import { sdk } from "@smoud/playable-sdk";
-import { Cache, Container, Sprite, Text } from "pixi.js";
-import App from "./common/app"
+import { Assets, Container, Sprite, Text } from "pixi.js";
+import App from "./core/app"
 
 export class Game extends App {
   init(width, height) {
     this.bg = new Sprite({
-      texture: Cache.get("bg"),
+      texture: Assets.get("bg"),
       anchor: 0.5,
       scale: Math.max(width/1080, height/1920)
     })
-    this.app.stage.addChild(this.bg)
-
-    this.scene = new Container()
-    this.app.stage.addChild(this.scene)
 
     let title = new Text({
       text: "Title",
@@ -25,13 +21,21 @@ export class Game extends App {
           width: 4,
         }
       },
-      anchor: 0.5
+      anchor: 0.5,
+      eventMode: "static",
     })
-    title.eventMode = "static"
+
     title.on("pointerdown", () => {
       sdk.install()
     })
-    this.scene.addChild(title)
+
+    this.scene = new Container({
+      label: "Scene",
+      children: [
+        title
+      ]
+    })
+    this.addChild(this.bg, this.scene)
   }
 
   resize(width, height) {
