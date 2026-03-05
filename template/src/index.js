@@ -12,3 +12,7 @@ sdk.init(async (width, height) => {
     app.resize(w, h)
   })
 })
+
+if (__DEV__) {
+  console.log("%c Playable: Development mode ", "background-color: crimson; color: white")
+}

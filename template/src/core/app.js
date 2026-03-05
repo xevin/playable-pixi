@@ -1,4 +1,5 @@
 import { Application } from "pixi.js"
+import config from "../config"
 
 export default class App {
   constructor(width, height) {
@@ -10,9 +11,10 @@ export default class App {
     globalThis.__PIXI_APP__ = this.app
 
     this.app.init({
-      background: 0x001100,
+      background: config?.backgroundColor ?? "#000000",
       width,
       height,
+      antialias: config.antialias,
     }).then(() => {
       gameWrapper.appendChild(this.app.canvas)
       this.#placeToCenterOfScreen(width, height)
@@ -34,9 +36,7 @@ export default class App {
   }
 
   resize(width, height) {
-    console.log(`App.resize(${width}, ${height})`)
     this.app.renderer.resize(width, height)
-
     this.#placeToCenterOfScreen(width, height)
   }
 }

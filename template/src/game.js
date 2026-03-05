@@ -1,5 +1,6 @@
-import { sdk } from "@smoud/playable-sdk";
-import { Assets, Container, Sprite, Text } from "pixi.js";
+import { sdk } from "@smoud/playable-sdk"
+import { Assets, Sprite, Text } from "pixi.js"
+import config from "./config"
 import App from "./core/app"
 
 export class Game extends App {
@@ -7,19 +8,13 @@ export class Game extends App {
     this.bg = new Sprite({
       texture: Assets.get("bg"),
       anchor: 0.5,
-      scale: Math.max(width/1080, height/1920)
+      scale: Math.max(width/config.width, height/config.height)
     })
 
     let title = new Text({
       text: "Title",
       style: {
-        fontFamily: "Roboto",
-        fontSize: 60,
-        fill: 0xFFFFFF,
-        stroke: {
-          color: 0x000000,
-          width: 4,
-        }
+        ...config.defaultFontStyles,
       },
       anchor: 0.5,
       eventMode: "static",
@@ -29,13 +24,10 @@ export class Game extends App {
       sdk.install()
     })
 
-    this.scene = new Container({
-      label: "Scene",
-      children: [
-        title
-      ]
-    })
-    this.addChild(this.bg, this.scene)
+    this.addChild(
+      this.bg,
+      title,
+    )
   }
 
   resize(width, height) {

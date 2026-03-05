@@ -1,13 +1,12 @@
 export default {
   width: 1920,
   height: 1080,
-  minWidth: 1920,
-  minHeight: 1080,
-  backgroundColor: "#233040",
-  fontStyles: {
-    fill: "#3d3d3d",
+  backgroundColor: "#080d22",
+  antialias: true,
+  defaultFontStyles: {
+    fill: "#FFFFFF",
     fontSize: 60,
-    fontFamily: "CustomFont",
+    fontFamily: "Roboto",
     align: "center"
   }
 }
