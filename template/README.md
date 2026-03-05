@@ -4,4 +4,6 @@
 2. Запусти `npm run _prebuild`
 3. Запусти `npm run dev`
 4. разрабатывай
-5. собирай `npm run build moloco`
+5. собирай `npm run build ironsource`
+
+

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "prebuild": "assetpack",
+    "_prebuild": "assetpack",
     "dev": "playable-scripts dev",
     "dev-open": "playable-scripts dev --open",
     "build": "playable-scripts build"
