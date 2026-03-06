@@ -6,10 +6,12 @@ import App from "./core/app"
 export class Game extends App {
   init(width, height) {
     this.bg = new Sprite({
-      texture: Assets.get("bg"),
+      texture: Assets.get("background"),
       anchor: 0.5,
-      scale: Math.max(width/config.width, height/config.height)
     })
+    this.backgroundHeight = this.bg.height
+    this.backgroundWidth = this.bg.width
+    this.bg.scale.set(Math.max(width/this.backgroundWidth, height/this.backgroundHeight))
 
     let title = new Text({
       text: "Title",
@@ -27,12 +29,18 @@ export class Game extends App {
     this.addChild(
       this.bg,
       title,
+      new Sprite({
+        texture: Assets.get("star"),
+        anchor: 0.5,
+        y: -70,
+      })
     )
   }
 
   resize(width, height) {
     super.resize(width, height)
 
-    this.bg.scale.set(Math.max(width/1080, height/1920))
+    const scaleCover = Math.max(width/this.backgroundWidth, height/this.backgroundHeight)
+    this.bg.scale.set(scaleCover)
   }
 }

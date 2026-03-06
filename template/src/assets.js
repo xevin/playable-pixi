@@ -1,6 +1,6 @@
 import { Assets, Cache, loadTextures, Spritesheet } from "pixi.js"
 import SoundManager from "./sound_manager"
-import { capitalizeFirstLetter } from "./utils"
+import { capitalizeFirstLetter, svgToBase64 } from "./utils"
 
 // Шрифты
 import robotoFont from "assets/fonts/Roboto-VariableFont.ttf"
@@ -8,6 +8,8 @@ import robotoFont from "assets/fonts/Roboto-VariableFont.ttf"
 
 // Изображения
 import pointer from "assets/images/pointer.webp"
+import background from "assets/images/bg.webp"
+import star from "assets/images/star.svg"
 
 
 // Анимации
@@ -19,21 +21,25 @@ import pointer from "assets/images/pointer.webp"
 import clickSound from "assets/sounds/click.mp3"
 
 
-let fonts = {
+const FONTS = {
   // <fontFamily>: <base64>
   roboto: robotoFont,
 }
 
-let images = {
-  // <assetName>: <base64>
+// для загрузки SVG через Assets.load(), его надо преобразовывать в Base64
+// svgImage: utils.svgToBase64(svgImage)
+const IMAGES = {
+  // <assetAlias>: <base64>
+  background,
   pointer,
+  star: svgToBase64(star)
 }
 
-let sounds = {
+const SOUNDS = {
   clickSound,
 }
 
-let animations = [
+const ANIMATIONS = [
   // {
   //   alias: "lighting",
   //   config: lightingAnimationConfig,
@@ -71,7 +77,7 @@ loadTextures.config = {
 }
 
 
-function objectToAssetArray(obj) {
+function objectToAssetList(obj) {
   let result = []
   for(let key in obj) {
     result.push({
@@ -126,25 +132,21 @@ async function loadAnimations(alias, config, texture) {
 
 export async function loadAssets() {
   // грузим изображения
-  let imageList = objectToAssetArray(images)
+  let imageList = objectToAssetList(IMAGES)
   await Assets.load(imageList)
 
-  // грузим анимации станут доступны через Cache.get("animation_name")
-  for(let i of animations) {
+  // грузим анимации. Они станут доступны через Cache.get("animation_name")
+  for(let i of ANIMATIONS) {
     await loadAnimations(i.alias, i.config, i.frames)
   }
 
   // Грузим звуки
-  // FB прерывает запуск превью, если грузить звуки через Assets.load()
-  // await Assets.load(objectToAssetArray(sounds))
-
-  // поэтому костымлим загрузку через ArrayBuffer
   const sound = SoundManager.getInstance()
-  for (let soundKey in sounds) {
-    sound.load(soundKey, sounds[soundKey])
+  for (let soundKey in SOUNDS) {
+    sound.load(soundKey, SOUNDS[soundKey])
   }
 
   // грузим шрифты в Ассеты
-  let fontList = objectToFontAssetList(fonts)
+  let fontList = objectToFontAssetList(FONTS)
   await Assets.load(fontList)
 }
