@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "_prebuild": "assetpack",
+    "assets:build": "assetpack",
     "dev": "playable-scripts dev",
-    "dev-open": "playable-scripts dev --open",
+    "dev:open": "playable-scripts dev --open",
     "build": "playable-scripts build"
   },
   "author": "xevin",
