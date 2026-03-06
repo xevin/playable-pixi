@@ -2,9 +2,9 @@ import { sound } from "@pixi/sound"
 import Singleton from "./core/singleton"
 
 export default class SoundManager extends Singleton {
-  play(soundName) {
-    console.log("SoundManager.play()", soundName)
-    sound.play(soundName)
+  play(...args) {
+    console.log("SoundManager.play()", ...args)
+    sound.play(...args)
   }
 
   stop(soundName) {
@@ -24,7 +24,10 @@ export default class SoundManager extends Singleton {
   }
 
   load(name, base64) {
-    // sound.add(name, base64)
+    /*
+      FB прерывает запуск превью, если грузить звуки через Assets.load()
+      поэтому костымлим загрузку через ArrayBuffer
+    */
     sound.add(name, this.base64ToArrayBuffer(base64))
   }
 }
