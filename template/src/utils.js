@@ -62,3 +62,15 @@ export function createCircle(x, y, radius, fill=null) {
 export function svgToBase64(svgString) {
   return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svgString)}`
 }
+
+export function gradient(fromColor, toColor) {
+  return new FillGradient({
+    type: "linear",
+    end: { x: 0, y: 1 },
+    colorStops: [
+      { offset: 0, color: toColor, alpha: 1 },
+      // { offset: 0.5, color: "#f9d843", alpha: 1 },
+      { offset: 1, color: fromColor, alpha: 1 }
+    ]
+  })
+}
