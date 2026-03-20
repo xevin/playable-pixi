@@ -63,6 +63,11 @@ loadTextures.config = {
   // crossOrigin: 'anonymous',
 
   /**
+   * When set to true, loading and decoding images will happen with new Image()
+   */
+  // parseAsGraphicsContext: true,
+
+  /**
    * When set to `true`, loading and decoding images will happen with `createImageBitmap`,
    * otherwise it will use `new Image()`.
    * @default true

@@ -1,24 +1,26 @@
 {
   "name": "playable-pixi",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "main": "index.js",
   "scripts": {
     "assets:build": "assetpack",
+    "assets:dropcache": "rm -rf .assetpack/*",
     "dev": "playable-scripts dev",
     "dev:open": "playable-scripts dev --open",
-    "build": "playable-scripts build"
+    "build": "playable-scripts build",
+    "build:fr": "playable-scripts build --language fr"
   },
   "author": "xevin",
   "license": "ISC",
   "description": "Базовый шаблон для написания playable на pixi.js",
   "devDependencies": {
-    "@assetpack/core": "^1.4.0",
-    "@smoud/playable-scripts": "^1.1.2"
+    "@assetpack/core": "^1.7.0",
+    "@smoud/playable-scripts": "^1.2.3"
   },
   "dependencies": {
     "gsap": "^3.14.2",
     "@pixi/sound": "^6.0.1",
-    "pixi.js": "^8.15.0",
+    "pixi.js": "^8.17.1",
     "@smoud/playable-sdk": "^1.0.24"
   }
 }

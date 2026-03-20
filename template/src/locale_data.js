@@ -1,6 +1,6 @@
 export default {
   GAME_OVER: {
-    "ru": "Конец игры",
-    "en": "Game Over"
+    "en": "Game Over",
+    "fr": "Jeu terminé",
   }
 }
