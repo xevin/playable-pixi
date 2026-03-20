@@ -9,7 +9,6 @@ import robotoFont from "assets/fonts/Roboto-VariableFont.ttf"
 // Изображения
 import pointer from "assets/images/pointer.webp"
 import background from "assets/images/bg.webp"
-import star from "assets/images/star.svg"
 
 
 // Анимации
@@ -26,13 +25,10 @@ const FONTS = {
   roboto: robotoFont,
 }
 
-// для загрузки SVG через Assets.load(), его надо преобразовывать в Base64
-// svgImage: utils.svgToBase64(svgImage)
 const IMAGES = {
   // <assetAlias>: <base64>
   background,
-  pointer,
-  star: svgToBase64(star)
+  pointer
 }
 
 const SOUNDS = {

@@ -15,8 +15,11 @@ export default class App {
       width,
       height,
       antialias: config.antialias,
-      // если на мобиле изображения после scale плохого качества, то 'canvas'
-      // но учти, что в canvas не всегда работают BlurFilter и mask
+
+      /*
+        если на мобиле изображения после scale плохого качества, то 'canvas'
+        но учти, что в canvas не всегда работают BlurFilter и mask
+      */
       // preference: "canvas"
     }).then(() => {
       gameWrapper.appendChild(this.app.canvas)
