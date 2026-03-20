@@ -1,5 +1,5 @@
 import { sound } from "@pixi/sound"
-import Singleton from "./core/singleton"
+import Singleton from "./singleton"
 
 export default class SoundManager extends Singleton {
   play(...args) {

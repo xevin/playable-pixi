@@ -1,5 +1,5 @@
 import { Assets, Cache, loadTextures, Spritesheet } from "pixi.js"
-import SoundManager from "./sound_manager"
+import SoundManager from "./core/sound_manager"
 import { capitalizeFirstLetter, svgToBase64 } from "./utils"
 
 // Шрифты

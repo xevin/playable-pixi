@@ -1,6 +1,4 @@
-import { sdk } from "@smoud/playable-sdk"
-import { Assets, Sprite, Text } from "pixi.js"
-import config from "./config"
+import { Assets, Sprite } from "pixi.js"
 import App from "./core/app"
 
 export class Game extends App {
@@ -13,28 +11,11 @@ export class Game extends App {
     this.backgroundWidth = this.bg.width
     this.bg.scale.set(Math.max(width/this.backgroundWidth, height/this.backgroundHeight))
 
-    let title = new Text({
-      text: "Title",
-      style: {
-        ...config.defaultFontStyles,
-      },
-      anchor: 0.5,
-      eventMode: "static",
-    })
-
-    title.on("pointerdown", () => {
-      sdk.install()
-    })
-
     this.addChild(
       this.bg,
-      title,
-      new Sprite({
-        texture: Assets.get("star"),
-        anchor: 0.5,
-        y: -70,
-      })
     )
+
+    this.resize(width, height)
   }
 
   resize(width, height) {

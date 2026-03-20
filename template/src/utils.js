@@ -1,4 +1,4 @@
-import { Graphics } from "pixi.js"
+import { FillGradient, Graphics } from "pixi.js"
 
 export function capitalizeFirstLetter(s) {
   return s && String(s[0]).toUpperCase() + String(s).slice(1)
@@ -37,7 +37,7 @@ export function createRect(x, y, w, h, fill=null) {
   return graphics
 }
 
-export function createRoundRect(x, y, w, h, radius, fill=0xFFFFFF) {
+export function createRoundRect(x, y, w, h, radius, fill=null) {
   let graphics = new Graphics()
   graphics.roundRect(x, y, w, h, radius)
 
@@ -63,13 +63,12 @@ export function svgToBase64(svgString) {
   return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svgString)}`
 }
 
-export function gradient(fromColor, toColor) {
+export function verticalGradient(fromColor, toColor) {
   return new FillGradient({
     type: "linear",
     end: { x: 0, y: 1 },
     colorStops: [
       { offset: 0, color: fromColor, alpha: 1 },
-      // { offset: 0.5, color: "#f9d843", alpha: 1 },
       { offset: 1, color: toColor, alpha: 1 }
     ]
   })
