@@ -27,23 +27,30 @@ fs.mkdirSync(projectDir, { recursive: true });
 // Копируем файлы из шаблона
 fs.cpSync(templateDir, projectDir, { recursive: true });
 
-// Пример: переименовываем .gitignore (если в шаблоне он назван gitignore)
-try {
-  fs.renameSync(
-    path.join(projectDir,  '_gitignore'),
-    path.join(projectDir, '.gitignore')
-  );
-  fs.renameSync(
-    path.join(projectDir,  '_assetpack.js'),
-    path.join(projectDir, '.assetpack.js')
-  );
-  fs.renameSync(
-    path.join(projectDir,  '_editorconfig'),
-    path.join(projectDir, '.editorconfig')
-  );
-} catch (err) {
-  // Игнорируем, если файла нет
+/**
+ * Переименовывает все файлы в корне указанной директории,
+ * которые начинаются с символа '_', заменяя '_' на '.'.
+ * @param {string} dirPath - путь к директории
+ */
+function renameUnderscoreFiles(dirPath) {
+  try {
+    const files = fs.readdirSync(dirPath, { withFileTypes: true });
+    for (const file of files) {
+      if (file.isFile() && file.name.startsWith('_')) {
+        const newName = '.' + file.name.slice(1);
+        const oldPath = path.join(dirPath, file.name);
+        const newPath = path.join(dirPath, newName);
+        fs.renameSync(oldPath, newPath);
+        console.log(`Переименован: ${file.name} -> ${newName}`);
+      }
+    }
+  } catch (err) {
+    // Игнорируем ошибки (например, если директории не существует)
+  }
 }
+
+// Переименовываем все файлы, начинающиеся с '_'
+renameUnderscoreFiles(projectDir);
 
 // Устанавливаем зависимости (если есть package.json)
 if (fs.existsSync(path.join(projectDir, 'package.json'))) {
