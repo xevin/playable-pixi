@@ -11,15 +11,11 @@ export default class App {
     globalThis.__PIXI_APP__ = this.app
 
     this.app.init({
-      background: config?.backgroundColor ?? "#000000",
       width,
       height,
+      background: config?.backgroundColor ?? "#000000",
       antialias: config.antialias,
-
-      /*
-        если на мобиле изображения после scale плохого качества, то 'canvas'
-        но учти, что в canvas не всегда работают BlurFilter и mask
-      */
+      resolution: config.resolution,
       // preference: "canvas"
     }).then(() => {
       gameWrapper.appendChild(this.app.canvas)

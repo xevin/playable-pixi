@@ -27,12 +27,4 @@ export default class DisclaimerText extends Container {
       this.addChild(text)
     }
   }
-
-  resize(width, height) {
-    if (width > height) {
-      // ландшафтный
-    } else {
-      // портретный
-    }
-  }
 }

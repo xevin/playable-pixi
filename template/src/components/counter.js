@@ -44,12 +44,16 @@ export default class CounterComponent extends Container {
   }
 
   animateValue(value, duration=1) {
-    gsap.to(this, {
+    let tl = gsap.timeline()
+
+    tl.to(this, {
       value: value,
       duration,
       onUpdate: () => {
         this.valueLabel.text = this.getFormattedValue()
       }
     })
+
+    return tl
   }
 }

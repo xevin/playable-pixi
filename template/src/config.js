@@ -9,4 +9,5 @@ export default {
   height: 1080,
   backgroundColor: "#080d22",
   antialias: true,
+  resolution: 2,
 }
