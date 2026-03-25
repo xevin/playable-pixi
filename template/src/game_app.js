@@ -1,7 +1,7 @@
 import { Assets, Sprite } from "pixi.js"
 import App from "./core/app"
 
-export class Game extends App {
+export class GameApp extends App {
   init(width, height) {
     this.bg = new Sprite({
       texture: Assets.get("background"),

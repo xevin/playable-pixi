@@ -1,5 +1,5 @@
 import { Container, Sprite, Text } from "pixi.js"
-import gsap from "gsap"
+
 
 export default class CounterComponent extends Container {
   value = 0

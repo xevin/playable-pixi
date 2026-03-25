@@ -1,11 +1,18 @@
 import { sdk } from "@smoud/playable-sdk"
 import { loadAssets } from "./assets"
 import Translation from "./core/translation"
-import { Game } from "./game"
+import { GameApp } from "./game_app"
 import localeData from "./locale_data"
 import "./index.css"
+import gsap from "gsap"
+import SoundManager from "./core/sound_manager"
 
-const tr = Translation.getInstance()
+
+globalThis.gsap = gsap
+globalThis.sound = SoundManager.getInstance()
+globalThis.tr = Translation.getInstance()
+
+
 tr.setData(localeData)
 // константа LANGUAGE предоставляется playable-sdk
 tr.setLang(LANGUAGE)
@@ -13,7 +20,7 @@ tr.setLang(LANGUAGE)
 sdk.init(async (width, height) => {
   await loadAssets()
 
-  let app = new Game(width, height)
+  let app = new GameApp(width, height)
 
   sdk.start()
   sdk.on("resize", (w, h) => {

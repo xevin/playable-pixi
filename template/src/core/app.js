@@ -16,6 +16,7 @@ export default class App {
       background: config?.backgroundColor ?? "#000000",
       antialias: config.antialias,
       resolution: config.resolution,
+      autoDensity: true,
       // preference: "canvas"
     }).then(() => {
       gameWrapper.appendChild(this.app.canvas)
