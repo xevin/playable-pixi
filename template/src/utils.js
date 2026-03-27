@@ -1,5 +1,15 @@
 import { FillGradient, Graphics } from "pixi.js"
 
+
+export function formatNumberWithCommas(num, separator = ',') {
+  // Разбиваем на целую и дробную части
+  const parts = num.toString().split('.');
+  // Форматируем целую часть
+  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, separator);
+  // Собираем обратно
+  return parts.join('.');
+}
+
 export function capitalizeFirstLetter(s) {
   return s && String(s[0]).toUpperCase() + String(s).slice(1)
 }
