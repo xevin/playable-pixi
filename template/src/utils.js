@@ -83,3 +83,14 @@ export function verticalGradient(fromColor, toColor) {
     ]
   })
 }
+
+export function horizontalGradient(fromColor, toColor) {
+  return new FillGradient({
+    type: "linear",
+    end: { x: 1, y: 0 },
+    colorStops: [
+      { offset: 0, color: fromColor, alpha: 1 },
+      { offset: 1, color: toColor, alpha: 1 }
+    ]
+  })
+}
